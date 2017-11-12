@@ -1,0 +1,10 @@
+{
+  "require": {
+    "mongodb/mongodb": "^1.1",
+    "doctrine/mongodb-odm": "^1.2",
+    "alcaeus/mongo-php-adapter": "^1.1"
+  },
+  "provide" : {
+    "ext-mongo": "*"
+  }
+}
