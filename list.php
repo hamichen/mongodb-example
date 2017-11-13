@@ -38,6 +38,10 @@ $students = $dm->createQueryBuilder('Documents\Student')
                     <td><?php echo  $student->getName() ?></td>
                     <td><?php echo  $student->getPersonId() ?></td>
                     <td>
+                         <span
+                                 class="btn btn-warning btn-xs edit-btn"
+                                 data-id ="<?php echo $student->getId() ?>"
+                         >修改</span>
                         <span
                                 class="btn btn-danger btn-xs del-btn"
                                 data-id ="<?php echo $student->getId() ?>"
@@ -59,6 +63,22 @@ $students = $dm->createQueryBuilder('Documents\Student')
 <script>
     $(function(){
 
+        //修改
+        $(".edit-btn").click(function(){
+            var id = $(this).data('id');
+
+            BootstrapDialog.show({
+                message: $('<div></div>').load('edit.php?id='+id),
+                buttons: [{
+                    id: 'btn-1',
+                    label: '存檔',
+                    action: function(dialog) {
+                        $("#edit_form").submit();
+                    }
+                }]
+            });
+
+        });
         //刪除選擇
         $("#del_all").click(function(){
             var data = $("#sel_form").serialize();
