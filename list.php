@@ -41,6 +41,7 @@ $students = $dm->createQueryBuilder('Documents\Student')
                                   data-id="<?php echo $student->getId() ?>">
                                 顯示照片
                             </span>
+                        <a class="btn btn-default" href="show-photo.php?id=<?php echo $student->getId()?>">下載</a>
                     <?php endif ?>
                     </td>
                     <td><?php echo  $student->getPersonId() ?></td>
@@ -78,6 +79,7 @@ $students = $dm->createQueryBuilder('Documents\Student')
         $(".show-btn").click(function(){
             var id = $(this).data('id');
             var html = "<img class='img-responsive' src='show-photo.php?id="+id+"'>";
+          //  html += " <a  href='show-photo.php?id="+id+"'>下載</a>";
             BootstrapDialog.show({
                 message: html,
 
