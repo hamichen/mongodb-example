@@ -14,9 +14,11 @@ $students = $dm->createQueryBuilder('Documents\Student')
         <h3>學生名冊
             <a href="add.php"><span class="btn btn-primary pull-right">新增 5 個學生</span></a>
         </h3>
+        <form id="sel_form" method="post">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
+                <th></th>
                 <th>key</th>
                 <th>姓名</th>
                 <th>身分證</th>
@@ -28,6 +30,10 @@ $students = $dm->createQueryBuilder('Documents\Student')
             /** @var  $student \Documents\Student */
             foreach ($students as $student):?>
                 <tr>
+                    <td>
+                        <input type="checkbox" name="sel_id[<?php echo $student->getId()?>]"
+                               value="<?php echo $student->getId()?>">
+                    </td>
                     <td><?php echo  $student->getKey() ?></td>
                     <td><?php echo  $student->getName() ?></td>
                     <td><?php echo  $student->getPersonId() ?></td>
@@ -42,7 +48,8 @@ $students = $dm->createQueryBuilder('Documents\Student')
             <?php endforeach;?>
             </tbody>
         </table>
-
+            <span class="btn btn-primary" id="del_all">刪除選擇</span>
+        </form>
     </div>
 </div>
 
@@ -51,6 +58,15 @@ $students = $dm->createQueryBuilder('Documents\Student')
 
 <script>
     $(function(){
+
+        //刪除選擇
+        $("#del_all").click(function(){
+            var data = $("#sel_form").serialize();
+            $.post('delete-all.php', data, function(){
+                window.location.reload();
+            })
+        });
+
         // 刪除
         $(".del-btn").click(function(){
             var id = $(this).data('id');
