@@ -18,3 +18,5 @@ foreach ($randKey as $key) {
 }
 
 $dm->flush();
+
+header('Location: list.php');

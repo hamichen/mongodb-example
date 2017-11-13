@@ -18,8 +18,6 @@ class Student
     /** @ODM\Field(type="string") */
     private $person_id;
 
-
-
     /**
      * @return mixed
      */
@@ -34,6 +32,22 @@ class Student
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param mixed $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
     }
 
     /**
@@ -68,21 +82,8 @@ class Student
         $this->person_id = $person_id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
 
-    /**
-     * @param mixed $key
-     */
-    public function setKey($key)
-    {
-        $this->key = $key;
-    }
+
 
 
 }
