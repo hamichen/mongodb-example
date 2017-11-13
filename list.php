@@ -35,7 +35,14 @@ $students = $dm->createQueryBuilder('Documents\Student')
                                value="<?php echo $student->getId()?>">
                     </td>
                     <td><?php echo  $student->getKey() ?></td>
-                    <td><?php echo  $student->getName() ?></td>
+                    <td><?php echo  $student->getName() ?>
+                    <?php if ($student->getPhotoName()):?>
+                            <span class="btn btn-default show-btn"
+                                  data-id="<?php echo $student->getId() ?>">
+                                顯示照片
+                            </span>
+                    <?php endif ?>
+                    </td>
                     <td><?php echo  $student->getPersonId() ?></td>
                     <td>
                          <span
@@ -46,6 +53,10 @@ $students = $dm->createQueryBuilder('Documents\Student')
                                 class="btn btn-danger btn-xs del-btn"
                                 data-id ="<?php echo $student->getId() ?>"
                         >刪除</span>
+                        <span
+                                class="btn btn-info btn-xs upload-btn"
+                                data-id ="<?php echo $student->getId() ?>"
+                        >上傳照片</span>
                     </td>
                 </tr>
 
@@ -62,6 +73,34 @@ $students = $dm->createQueryBuilder('Documents\Student')
 
 <script>
     $(function(){
+
+        //顯示照片
+        $(".show-btn").click(function(){
+            var id = $(this).data('id');
+            var html = "<img class='img-responsive' src='show-photo.php?id="+id+"'>";
+            BootstrapDialog.show({
+                message: html,
+
+            });
+
+        });
+
+        //上傳照片
+        $(".upload-btn").click(function(){
+            var id = $(this).data('id');
+
+            BootstrapDialog.show({
+                message: $('<div></div>').load('upload-photo.php?id='+id),
+                buttons: [{
+                    id: 'btn-1',
+                    label: '上傳',
+                    action: function(dialog) {
+                        $("#upload_form").submit();
+                    }
+                }]
+            });
+
+        });
 
         //修改
         $(".edit-btn").click(function(){

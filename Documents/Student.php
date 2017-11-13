@@ -18,6 +18,15 @@ class Student
     /** @ODM\Field(type="string") */
     private $person_id;
 
+    /** @ODM\Field(type="file") */
+    private $photo;
+
+    /** @ODM\Field(type="string") */
+    private $photo_name;
+
+    /** @ODM\Field(type="string") */
+    private $photo_type;
+
     /**
      * @return mixed
      */
@@ -80,6 +89,54 @@ class Student
     public function setPersonId($person_id)
     {
         $this->person_id = $person_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhotoName()
+    {
+        return $this->photo_name;
+    }
+
+    /**
+     * @param mixed $photo_name
+     */
+    public function setPhotoName($photo_name)
+    {
+        $this->photo_name = $photo_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhotoType()
+    {
+        return $this->photo_type;
+    }
+
+    /**
+     * @param mixed $photo_type
+     */
+    public function setPhotoType($photo_type)
+    {
+        $this->photo_type = $photo_type;
     }
 
 
