@@ -20,6 +20,7 @@ $students = $dm->createQueryBuilder('Documents\Student')
                 <th>key</th>
                 <th>姓名</th>
                 <th>身分證</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +31,12 @@ $students = $dm->createQueryBuilder('Documents\Student')
                     <td><?php echo  $student->getKey() ?></td>
                     <td><?php echo  $student->getName() ?></td>
                     <td><?php echo  $student->getPersonId() ?></td>
+                    <td>
+                        <span
+                                class="btn btn-danger btn-xs del-btn"
+                                data-id ="<?php echo $student->getId() ?>"
+                        >刪除</span>
+                    </td>
                 </tr>
 
             <?php endforeach;?>
@@ -41,3 +48,17 @@ $students = $dm->createQueryBuilder('Documents\Student')
 
 
 <?php include 'footer.php' ?>
+
+<script>
+    $(function(){
+        // 刪除
+        $(".del-btn").click(function(){
+            var id = $(this).data('id');
+            var currentTr = $(this).parents('tr');
+
+            $.get('delete.php',{id:id}, function(){
+                currentTr.remove();
+            })
+        });
+    });
+</script>
